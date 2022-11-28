@@ -1,0 +1,43 @@
+class Brick{
+
+    field int x, y;  // brick loaction
+
+       /** Constructs a new Brick with the given initial location and wall locations. */
+    constructor Brick new(int Ax, int Ay) {    	
+	    let x = Ax;		
+	    let y = Ay;
+
+        do show();
+        return this;
+    }
+
+      /** Deallocates the Brick's memory. */
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+      /** Shows the brick. */
+    method void show() {
+        do Screen.setColor(true);
+        do draw();
+        return;
+    }
+
+      /** Draws the ball. */
+    method void draw() {
+	    do Screen.drawRectangle(x, y, x + 5, y + 15); //FIXME
+	    return;
+    }
+
+        /** Returns the ball's left edge. */
+    method int getLeft() {
+        return x;
+    }
+
+       /** Returns the ball's right edge. */
+    method int getRight() {
+        return x + 5;
+    }
+
+}
