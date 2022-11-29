@@ -18,16 +18,25 @@ class BrickGame {
 
     /** Constructs a new Pong game. */
     constructor BrickGame new() {
+        var int i;
+        var int j;
+
 	    do Screen.clearScreen();
 
         let PaddleWidth = 50;  // initial Paddle size
         let paddle = Paddle.new(230, 229, PaddleWidth, 7);
         let ball = Ball.new(253, 222, 0, 511, 0, 229);
-        let bricks = Array.new(15);
-
-        let brick = Brick.new(500, 500);
-        let bricks[0] = brick;
-
+        let bricks = Array.new(48);
+        
+        let j = 0;
+        while (j < 3){
+            let i = 0;
+            while (i < 16){
+                let bricks[i + (j*16)] = Brick.new((i*32), 10 + (j * 20));
+                let i = i + 1;
+            }
+            let j = j + 1;
+        }
 
         do ball.setDestination(400,0);
         do Screen.drawRectangle(0, 238, 511, 240);

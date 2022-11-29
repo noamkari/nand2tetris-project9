@@ -26,7 +26,7 @@ class Brick{
 
       /** Draws the ball. */
     method void draw() {
-	    do Screen.drawRectangle(x, y, x + 5, y + 15); //FIXME size coold change
+	    do Screen.drawRectangle(x, y, x + 28, y + 10);
 	    return;
     }
 
