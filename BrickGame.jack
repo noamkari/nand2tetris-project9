@@ -4,7 +4,7 @@
 class BrickGame {
 
     static BrickGame instance; // the singelton, a Pong game instance     
-    field Bat bat;            // the bat
+    field Paddle Paddle;            // the Paddle
     field Ball ball;          // the ball
     field int wall;           // the current wall that the ball is bouncing off of.
     field boolean exit;       // true when the game is over
@@ -12,15 +12,15 @@ class BrickGame {
     field int lastWall;       // the last wall that the ball bounced off of.
     field Array bricks; 
 
-    // The current width of the bat
-    field int batWidth;
+    // The current width of the Paddle
+    field int PaddleWidth;
 
     /** Constructs a new Pong game. */
     constructor BrickGame new() {
 	    do Screen.clearScreen();
 
-        let batWidth = 50;  // initial bat size
-        let bat = Bat.new(230, 229, batWidth, 7);
+        let PaddleWidth = 50;  // initial Paddle size
+        let Paddle = Paddle.new(230, 229, PaddleWidth, 7);
         let ball = Ball.new(253, 222, 0, 511, 0, 229);
         let bricks = Array.new(15);
 
@@ -45,7 +45,7 @@ class BrickGame {
 
     /** Deallocates the object's memory. */
     method void dispose() {
-        do bat.dispose();
+        do Paddle.dispose();
 	    do ball.dispose();
         do Memory.deAlloc(this);
         return;
@@ -63,7 +63,7 @@ class BrickGame {
     }
 
     /** Starts the game, and andles inputs from the user that control
-     *  the bat's movement direction. */
+     *  the Paddle's movement direction. */
     method void run() {
         var char key;
 
@@ -71,14 +71,14 @@ class BrickGame {
             // waits for a key to be pressed.
             while ((key = 0) & (~exit)) {
                 let key = Keyboard.keyPressed();
-                do bat.move();
+                do Paddle.move();
                 do moveBall();
                 do Sys.wait(50);
             }
 
-            if (key = 130) { do bat.setDirection(1); }
+            if (key = 130) { do Paddle.setDirection(1); }
 	        else {
-	            if (key = 132) { do bat.setDirection(2); }
+	            if (key = 132) { do Paddle.setDirection(2); }
 		        else {
                     if (key = 140) { let exit = true; }
 		        }
@@ -87,7 +87,7 @@ class BrickGame {
             // Waits for the key to be released.
             while ((~(key = 0)) & (~exit)) {
                 let key = Keyboard.keyPressed();
-                do bat.move();
+                do Paddle.move();
                 do moveBall();
                 do Sys.wait(50);
             }
@@ -104,32 +104,32 @@ class BrickGame {
     /**
      * Handles ball movement, including bouncing.
      * If the ball bounces off a wall, finds its new direction.
-     * If the ball bounces off the bat, increases the score by one
-     * and shrinks the bat's size, to make the game more challenging. 
+     * If the ball bounces off the Paddle, increases the score by one
+     * and shrinks the Paddle's size, to make the game more challenging. 
      */
     method void moveBall() {
-        var int bouncingDirection, batLeft, batRight, ballLeft, ballRight;
+        var int bouncingDirection, PaddleLeft, PaddleRight, ballLeft, ballRight;
 
         let wall = ball.move();
 
         if ((wall > 0) & (~(wall = lastWall))) {
             let lastWall = wall;
             let bouncingDirection = 0;
-            let batLeft = bat.getLeft();
-            let batRight = bat.getRight();
+            let PaddleLeft = Paddle.getLeft();
+            let PaddleRight = Paddle.getRight();
             let ballLeft = ball.getLeft();
             let ballRight = ball.getRight();
   
             if (wall = 4) {
-                let exit = (batLeft > ballRight) | (batRight < ballLeft);
+                let exit = (PaddleLeft > ballRight) | (PaddleRight < ballLeft);
                 if (~exit) {
-                    if (ballRight < (batLeft + 10)) { let bouncingDirection = -1; }
+                    if (ballRight < (PaddletLeft + 10)) { let bouncingDirection = -1; }
                     else {
-                        if (ballLeft > (batRight - 10)) { let bouncingDirection = 1; }
+                        if (ballLeft > (PaddleRight - 10)) { let bouncingDirection = 1; }
                     }
 
-                    let batWidth = batWidth - 2;
-                    do bat.setWidth(batWidth);      
+                    let PaddleWidth = PaddleWidth - 2;
+                    do Paddle.setWidth(PaddleWidth);      
                     let score = score + 1;
                     do Output.moveCursor(22,7);
                     do Output.printInt(score);
