@@ -1,0 +1,13 @@
+function Main.main 1
+call BrickGame.newInstance 0
+pop temp 0
+call BrickGame.getInstance 0
+pop local 0
+push local 0
+call BrickGame.run 1
+pop temp 0
+push local 0
+call BrickGame.dispose 1
+pop temp 0
+push constant 0
+return
