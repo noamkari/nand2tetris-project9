@@ -159,6 +159,18 @@ class Ball {
 	    return wall;
     }
 
+    method int floor(int num){
+        if (num = 0){
+            return 1;
+        }
+        return num;
+    }
+
+    method void setWall(int newWall){
+
+        let wall = newWall;
+        return;
+    }
     /**
      * Bounces off the current wall: sets the new destination
      * of the ball according to the ball's angle and the given
