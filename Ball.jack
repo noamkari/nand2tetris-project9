@@ -5,7 +5,7 @@
  */
 class Ball {
 
-    field int x, y;               // the ball's screen location (in pixels)
+    field int x, y, size;               // the ball's screen location (in pixels)
     field int lengthx, lengthy;   // distance of last destination (in pixels)
 
     field int d, straightD, diagonalD;            // used for straight line movement computation
@@ -20,6 +20,9 @@ class Ball {
                          int AleftWall, int ArightWall, int AtopWall, int AbottomWall) {    	
 	    let x = Ax;		
 	    let y = Ay;
+        let size = 5;
+
+
 	    let leftWall = AleftWall;
 	    let rightWall = ArightWall - 6;    // -6 for ball size
 	    let topWall = AtopWall; 
@@ -51,7 +54,7 @@ class Ball {
 
     /** Draws the ball. */
     method void draw() {
-	    do Screen.drawRectangle(x, y, x + 5, y + 5);
+	    do Screen.drawRectangle(x, y, x + size, y + size);
 	    return;
     }
 
@@ -62,7 +65,15 @@ class Ball {
 
     /** Returns the ball's right edge. */
     method int getRight() {
-        return x + 5;
+        return x + size;
+    }
+
+    method int getSize(){
+        return size;
+    }
+
+    method int getY(){
+        return y;
     }
 
     /** Computes and sets the ball's destination. */

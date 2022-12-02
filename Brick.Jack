@@ -1,21 +1,35 @@
 class Brick{
 
-    field int x, y;  // brick loaction
+    field int x, y;  // brick loaction top left corner
+    field int wide, height;
 
        /** Constructs a new Brick with the given initial location and wall locations. */
     constructor Brick new(int Ax, int Ay) {    	
 	    let x = Ax;		
 	    let y = Ay;
 
+        let wide = 28;
+        let height = 10;
+
         do show();
         return this;
     }
 
+        /** Hides the brick. */
+    method void hide() {
+        do Screen.setColor(false);
+	    do draw();
+        return;
+    }
+
       /** Deallocates the Brick's memory. */
     method void dispose() {
+        do hide();
         do Memory.deAlloc(this);
         return;
     }
+
+
 
       /** Shows the brick. */
     method void show() {
@@ -26,7 +40,7 @@ class Brick{
 
       /** Draws the ball. */
     method void draw() {
-	    do Screen.drawRectangle(x, y, x + 28, y + 10);
+	    do Screen.drawRectangle(x, y, x + wide, y + height);
 	    return;
     }
 
@@ -37,7 +51,17 @@ class Brick{
 
        /** Returns the ball's right edge. */
     method int getRight() {
-        return x + 5;
+        return x + wide;
+    }
+
+    method boolean hasCollision(int xBall, int yBall, int sizeBall){
+        if (((xBall >  (x - 1)) & (xBall < ((x + wide) + 1)) & (yBall > (y - 1)) & (yBall < ((y + height) + 1)))
+        | (((xBall + sizeBall) >  (x - 1)) & ((xBall + sizeBall) < ((x + wide) + 1)) & (yBall > (y - 1)) & (yBall < ((y + height) + 1)))){
+            
+            return true;
+        }
+
+        return false;
     }
 
 }

@@ -11,7 +11,7 @@ class BrickGame {
     field int score;          // the current score.
     field int lastWall;       // the last wall that the ball bounced off of.
     field Array bricks;
-    field Brick brick;
+    field int numBricks;
 
     // The current width of the Paddle
     field int PaddleWidth;
@@ -26,8 +26,11 @@ class BrickGame {
         let PaddleWidth = 50;  // initial Paddle size
         let paddle = Paddle.new(230, 229, PaddleWidth, 7);
         let ball = Ball.new(253, 222, 0, 511, 0, 229);
+
+        let numBricks = 48;
         let bricks = Array.new(48);
         
+
         let j = 0;
         while (j < 3){
             let i = 0;
@@ -109,6 +112,7 @@ class BrickGame {
         return;
     }
 
+
     /**
      * Handles ball movement, including bouncing.
      * If the ball bounces off a wall, finds its new direction.
@@ -117,8 +121,33 @@ class BrickGame {
      */
     method void moveBall() {
         var int bouncingDirection, PaddleLeft, PaddleRight, ballLeft, ballRight;
+        var int i;
+        var Brick brick;
+        var boolean hasCollision;
 
+        if (numBricks < 1){
+            let exit = true;
+        }
         let wall = ball.move();
+
+        let i = 0;
+            while (i < 48){
+                if (~(bricks[i] = 0)){
+                let brick = bricks[i];
+                let hasCollision =  brick.hasCollision(ball.getLeft(), ball.getY(), ball.getSize());
+                if (hasCollision){
+                    do brick.dispose();
+                    let bricks[i] = 0;
+                    let numBricks = numBricks - 1;
+
+                    // update score
+                    let score = score + 1;
+                    do Output.moveCursor(22,7);
+                    do Output.printInt(score);
+                }
+            }
+            let i = i + 1;
+        }
 
         if ((wall > 0) & (~(wall = lastWall))) {
             let lastWall = wall;
@@ -137,10 +166,7 @@ class BrickGame {
                     }
 
                     let PaddleWidth = PaddleWidth - 2;
-                    do paddle.setWidth(PaddleWidth);      
-                    let score = score + 1;
-                    do Output.moveCursor(22,7);
-                    do Output.printInt(score);
+                    do paddle.setWidth(PaddleWidth);
                 }
             }
             do ball.bounce(bouncingDirection);
