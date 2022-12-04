@@ -177,12 +177,6 @@ class BrickGame {
             let i = i + 1;
         }
 
-        do Output.moveCursor(22,7);
-        do Output.printInt(wall);
-
-        do Output.moveCursor(22,50);
-        do Output.printInt(lastWall);
-
         if ((wall > 0) & (~(wall = lastWall))) {
             let lastWall = wall;
             let bouncingDirection = 0;
