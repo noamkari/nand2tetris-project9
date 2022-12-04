@@ -100,4 +100,16 @@ class Paddle {
         }
         return;
     }
+
+
+    method void activateBonus(boolean grow){
+        if (grow){
+            do setWidth(width + 30);
+        }
+
+        else{
+            do setWidth(width - 30);
+        }
+        return;
+    }
 }

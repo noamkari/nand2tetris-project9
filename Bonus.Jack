@@ -54,10 +54,20 @@ class Bonus{
         return x + wide;
     }
 
+    method int getY(){
+        return y;
+    }
+
     method void move(){
         do hide();
-        let let x = x + 2;
+        let y = y + 2;
         do show();
+
+        return;
+    }
+
+    method boolean isGrow(){
+        return grow;
     }
 
 }

@@ -6,6 +6,7 @@ class BrickGame {
     static BrickGame instance; // the singelton, a Pong game instance     
     field Paddle paddle;            // the Paddle
     field Ball ball;          // the ball
+    field Bonus bonus;
     field int wall;           // the current wall that the ball is bouncing off of.
     field boolean exit;       // true when the game is over
     field int score;          // the current score.
@@ -27,10 +28,10 @@ class BrickGame {
         let PaddleWidth = 50;  // initial Paddle size
         let paddle = Paddle.new(230, 229, PaddleWidth, 7);
         let ball = Ball.new(253, 222, 0, 511, 0, 229);
+        let bonus = Bonus.new(250, 125, true);
 
         let numBricks = 48;
         let bricks = Array.new(48);
-        
 
         let j = 0;
         while (j < 3){
@@ -84,8 +85,10 @@ class BrickGame {
             // waits for a key to be pressed.
             while ((key = 0) & (~exit)) {
                 let key = Keyboard.keyPressed();
-                do paddle.move();
+                
                 do moveBall();
+                do moveBonus();
+                do paddle.move();
                 do Sys.wait(50);
             }
 
@@ -100,8 +103,10 @@ class BrickGame {
             // Waits for the key to be released.
             while ((~(key = 0)) & (~exit)) {
                 let key = Keyboard.keyPressed();
-                do paddle.move();
+                
                 do moveBall();
+                do moveBonus();
+                do paddle.move();
                 do Sys.wait(50);
             }
         }
@@ -117,6 +122,39 @@ class BrickGame {
         return;
     }
 
+    method void moveBonus(){
+
+        var int bonusR, bonusL, PaddleLeft, PaddleRight, yBonus;
+        var boolean grow;
+
+        if (bonus=0){
+            return;
+        }
+
+        let bonusR = bonus.getRight();
+        let bonusL = bonus.getLeft();
+        let yBonus = bonus.getY();
+
+        let PaddleLeft = paddle.getLeft();
+        let PaddleRight = paddle.getRight();
+
+        do bonus.move();
+
+
+        if (yBonus > 218){ // 
+            if (((PaddleLeft + 1) < bonusL) & ((PaddleRight - 1) > bonusR)){
+                do Output.moveCursor(10,27);
+                do Output.printInt(100);
+
+                let grow = bonus.isGrow();
+                do paddle.activateBonus(grow);
+            }
+            do bonus.dispose();
+            let bonus = 0;
+        }
+
+        return;
+    }
 
     /**
      * Handles ball movement, including bouncing.
@@ -201,9 +239,6 @@ class BrickGame {
                     else {
                         if (ballLeft > (PaddleRight - 10)) { let bouncingDirection = 1; }
                     }
-
-                    let PaddleWidth = PaddleWidth - 2;
-                    do paddle.setWidth(PaddleWidth);
                 }
             }
             do ball.bounce(bouncingDirection);
