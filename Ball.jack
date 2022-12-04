@@ -166,6 +166,18 @@ class Ball {
         return num;
     }
 
+    method boolean getInvert(){
+        return invert;
+    }
+    
+    method int getLengthx(){
+        return lengthx;
+    }
+
+    method int getLengthy(){
+        return lengthy;
+    }
+
     method void setWall(int newWall){
 
         let wall = newWall;
