@@ -327,6 +327,21 @@ return
 label IF_FALSE0
 push argument 1
 return
+function Ball.getInvert 0
+push argument 0
+pop pointer 0
+push this 8
+return
+function Ball.getLengthx 0
+push argument 0
+pop pointer 0
+push this 3
+return
+function Ball.getLengthy 0
+push argument 0
+pop pointer 0
+push this 4
+return
 function Ball.setWall 0
 push argument 0
 pop pointer 0

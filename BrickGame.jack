@@ -12,6 +12,7 @@ class BrickGame {
     field int lastWall;       // the last wall that the ball bounced off of.
     field Array bricks;
     field int numBricks;
+    field boolean win;
 
     // The current width of the Paddle
     field int PaddleWidth;
@@ -47,6 +48,7 @@ class BrickGame {
 	    do Output.printString("Score: 0");
 	
 	    let exit = false;
+        let win = false;
 	    let score = 0;
 	    let wall = 0;
 	    let lastWall = 0;
@@ -106,7 +108,10 @@ class BrickGame {
 
 	    if (exit) {
             do Output.moveCursor(10,27);
-	        do Output.printString("Game Over");
+            if(~win){
+	            do Output.printString("Game Over");}
+            else{
+	            do Output.printString("You Win!");}
 	    }
             
         return;
@@ -143,6 +148,10 @@ class BrickGame {
 
                     // update score
                     let score = score + 1;
+                    if(score = 48){
+                    let win = true;
+                    let exit = true;
+                    }
                     do Output.moveCursor(22,7);
                     do Output.printInt(score);
 
