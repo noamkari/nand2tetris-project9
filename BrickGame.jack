@@ -156,6 +156,14 @@ class BrickGame {
         return;
     }
 
+    // help func to avoid devsion by zero
+    method int floor(int num){
+        if (num = 0){
+            return 1;
+        }
+        return num;
+    }
+
     /**
      * Handles ball movement, including bouncing.
      * If the ball bounces off a wall, finds its new direction.
@@ -200,8 +208,8 @@ class BrickGame {
                     do Output.printInt(score);
 
                     // dividing by 10 first since results are too big
-                    let divLengthx = ball.getLengthx() / 10;
-                    let divLengthy = ball.getLengthy()  / 10;
+                    let divLengthx = floor(ball.getLengthx() / 10);
+                    let divLengthy = floor(ball.getLengthy()  / 10);
 
                     if (ball.getInvert()){
                         let bouncingDirection = -1;

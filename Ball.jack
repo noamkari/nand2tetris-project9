@@ -159,13 +159,6 @@ class Ball {
 	    return wall;
     }
 
-    method int floor(int num){
-        if (num = 0){
-            return 1;
-        }
-        return num;
-    }
-
     method boolean getInvert(){
         return invert;
     }
