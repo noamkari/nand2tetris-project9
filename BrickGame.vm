@@ -1,14 +1,14 @@
 function BrickGame.new 2
-push constant 10
+push constant 11
 call Memory.alloc 1
 pop pointer 0
 call Screen.clearScreen 0
 pop temp 0
 push constant 50
-pop this 9
+pop this 10
 push constant 230
 push constant 229
-push this 9
+push this 10
 push constant 7
 call Paddle.new 4
 pop this 0
@@ -20,11 +20,17 @@ push constant 0
 push constant 229
 call Ball.new 6
 pop this 1
+push constant 250
+push constant 220
+push constant 0
+not
+call Bouns.new 3
+pop this 2
 push constant 48
-pop this 7
+pop this 8
 push constant 48
 call Array.new 1
-pop this 6
+pop this 7
 push constant 0
 pop local 1
 label WHILE_EXP0
@@ -46,7 +52,7 @@ push local 1
 push constant 16
 call Math.multiply 2
 add
-push this 6
+push this 7
 add
 push local 0
 push constant 32
@@ -109,15 +115,15 @@ call String.appendChar 2
 call Output.printString 1
 pop temp 0
 push constant 0
-pop this 3
-push constant 0
-pop this 8
-push constant 0
 pop this 4
 push constant 0
-pop this 2
+pop this 9
 push constant 0
 pop this 5
+push constant 0
+pop this 3
+push constant 0
+pop this 6
 push pointer 0
 return
 function BrickGame.dispose 0
@@ -146,7 +152,7 @@ function BrickGame.run 1
 push argument 0
 pop pointer 0
 label WHILE_EXP0
-push this 3
+push this 4
 not
 not
 if-goto WHILE_END0
@@ -154,7 +160,7 @@ label WHILE_EXP1
 push local 0
 push constant 0
 eq
-push this 3
+push this 4
 not
 and
 not
@@ -204,7 +210,7 @@ goto IF_FALSE2
 label IF_TRUE2
 push constant 0
 not
-pop this 3
+pop this 4
 label IF_FALSE2
 label IF_END1
 label IF_END0
@@ -213,7 +219,7 @@ push local 0
 push constant 0
 eq
 not
-push this 3
+push this 4
 not
 and
 not
@@ -233,7 +239,7 @@ goto WHILE_EXP2
 label WHILE_END2
 goto WHILE_EXP0
 label WHILE_END0
-push this 3
+push this 4
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
@@ -241,7 +247,7 @@ push constant 10
 push constant 27
 call Output.moveCursor 2
 pop temp 0
-push this 8
+push this 9
 not
 if-goto IF_TRUE4
 goto IF_FALSE4
@@ -297,7 +303,7 @@ return
 function BrickGame.moveBall 13
 push argument 0
 pop pointer 0
-push this 7
+push this 8
 push constant 1
 lt
 if-goto IF_TRUE0
@@ -305,11 +311,11 @@ goto IF_FALSE0
 label IF_TRUE0
 push constant 0
 not
-pop this 3
+pop this 4
 label IF_FALSE0
 push this 1
 call Ball.move 1
-pop this 2
+pop this 3
 push constant 0
 pop local 5
 label WHILE_EXP0
@@ -319,7 +325,7 @@ lt
 not
 if-goto WHILE_END0
 push local 5
-push this 6
+push this 7
 add
 pop pointer 1
 push that 0
@@ -330,7 +336,7 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push local 5
-push this 6
+push this 7
 add
 pop pointer 1
 push that 0
@@ -352,22 +358,22 @@ push local 11
 call Brick.dispose 1
 pop temp 0
 push local 5
-push this 6
+push this 7
 add
 push constant 0
 pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push this 7
+push this 8
 push constant 1
 sub
-pop this 7
-push this 4
+pop this 8
+push this 5
 push constant 1
 add
-pop this 4
-push this 4
+pop this 5
+push this 5
 push constant 48
 eq
 if-goto IF_TRUE3
@@ -375,16 +381,16 @@ goto IF_FALSE3
 label IF_TRUE3
 push constant 0
 not
-pop this 8
+pop this 9
 push constant 0
 not
-pop this 3
+pop this 4
 label IF_FALSE3
 push constant 22
 push constant 7
 call Output.moveCursor 2
 pop temp 0
-push this 4
+push this 5
 call Output.printInt 1
 pop temp 0
 push this 1
@@ -433,9 +439,9 @@ push constant 3
 pop local 8
 label IF_END5
 push constant 0
-pop this 5
+pop this 6
 push constant 0
-pop this 2
+pop this 3
 push this 1
 push constant 0
 call Ball.setWall 2
@@ -460,19 +466,19 @@ add
 pop local 5
 goto WHILE_EXP0
 label WHILE_END0
-push this 2
+push this 3
 push constant 0
 gt
-push this 2
-push this 5
+push this 3
+push this 6
 eq
 not
 and
 if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
-push this 2
-pop this 5
+push this 3
+pop this 6
 push constant 0
 pop local 0
 push this 0
@@ -487,7 +493,7 @@ pop local 3
 push this 1
 call Ball.getRight 1
 pop local 4
-push this 2
+push this 3
 push constant 4
 eq
 if-goto IF_TRUE7
@@ -500,8 +506,8 @@ push local 2
 push local 3
 lt
 or
-pop this 3
-push this 3
+pop this 4
+push this 4
 not
 if-goto IF_TRUE8
 goto IF_FALSE8
@@ -531,12 +537,12 @@ push constant 1
 pop local 0
 label IF_FALSE10
 label IF_END9
-push this 9
+push this 10
 push constant 2
 sub
-pop this 9
+pop this 10
 push this 0
-push this 9
+push this 10
 call Paddle.setWidth 2
 pop temp 0
 label IF_FALSE8

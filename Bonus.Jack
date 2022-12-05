@@ -56,8 +56,9 @@ class Bonus{
 
     method void move(){
         do hide();
-        let let x = x + 2;
+        let x = x + 2;
         do show();
+        return;
     }
 
 }

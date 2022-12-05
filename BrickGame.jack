@@ -6,6 +6,7 @@ class BrickGame {
     static BrickGame instance; // the singelton, a Pong game instance     
     field Paddle paddle;            // the Paddle
     field Ball ball;          // the ball
+    field Bonus bonus;
     field int wall;           // the current wall that the ball is bouncing off of.
     field boolean exit;       // true when the game is over
     field int score;          // the current score.
@@ -27,10 +28,10 @@ class BrickGame {
         let PaddleWidth = 50;  // initial Paddle size
         let paddle = Paddle.new(230, 229, PaddleWidth, 7);
         let ball = Ball.new(253, 222, 0, 511, 0, 229);
-
+        let bonus = Bouns.new(250, 220, true);
         let numBricks = 48;
         let bricks = Array.new(48);
-        
+
 
         let j = 0;
         while (j < 3){
