@@ -54,6 +54,10 @@ class Brick{
         return x + wide;
     }
 
+    method int getY() {
+        return y;
+    }
+
     method boolean hasCollision(int xBall, int yBall, int sizeBall){
         if (((xBall >  (x - 1)) & (xBall < ((x + wide) + 1)) & (yBall > (y - 1)) & (yBall < ((y + height) + 1)))
         | (((xBall + sizeBall) >  (x - 1)) & ((xBall + sizeBall) < ((x + wide) + 1)) & (yBall > (y - 1)) & (yBall < ((y + height) + 1)))){

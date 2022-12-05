@@ -1,0 +1,330 @@
+function Bonus.new 0
+push constant 5
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push argument 2
+pop this 4
+push constant 15
+pop this 2
+push constant 5
+pop this 3
+push pointer 0
+call Bonus.show 1
+pop temp 0
+push pointer 0
+return
+function Bonus.hide 0
+push argument 0
+pop pointer 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push pointer 0
+call Bonus.draw 1
+pop temp 0
+push constant 0
+return
+function Bonus.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Bonus.hide 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Bonus.show 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push pointer 0
+call Bonus.draw 1
+pop temp 0
+push constant 0
+return
+function Bonus.draw 0
+push argument 0
+pop pointer 0
+push this 4
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+call Screen.drawLine 4
+pop temp 0
+push this 0
+push constant 1
+add
+push this 1
+push constant 1
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 2
+add
+push this 1
+push constant 2
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 3
+add
+push this 1
+push constant 3
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 1
+add
+push this 1
+push constant 1
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 2
+add
+push this 1
+push constant 2
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 3
+add
+push this 1
+push constant 3
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 1
+sub
+push this 1
+push constant 1
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 2
+sub
+push this 1
+push constant 2
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 3
+sub
+push this 1
+push constant 3
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 1
+sub
+push this 1
+push constant 1
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 2
+sub
+push this 1
+push constant 2
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 3
+sub
+push this 1
+push constant 3
+sub
+call Screen.drawPixel 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+push constant 3
+add
+push this 1
+push this 0
+push this 2
+add
+push constant 3
+sub
+push this 1
+call Screen.drawLine 4
+pop temp 0
+push this 0
+push this 1
+push constant 3
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 1
+add
+push this 1
+push constant 2
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 2
+add
+push this 1
+push constant 1
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 1
+push constant 3
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 1
+add
+push this 1
+push constant 2
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 2
+add
+push this 1
+push constant 1
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push this 1
+push constant 3
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 1
+sub
+push this 1
+push constant 2
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 2
+sub
+push this 1
+push constant 1
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push this 1
+push constant 3
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 1
+sub
+push this 1
+push constant 2
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 2
+sub
+push this 1
+push constant 1
+sub
+call Screen.drawPixel 2
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Bonus.getLeft 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Bonus.getRight 0
+push argument 0
+pop pointer 0
+push this 0
+push this 2
+add
+return
+function Bonus.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Bonus.move 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Bonus.hide 1
+pop temp 0
+push this 1
+push constant 2
+add
+pop this 1
+push pointer 0
+call Bonus.show 1
+pop temp 0
+push constant 0
+return
+function Bonus.isGrow 0
+push argument 0
+pop pointer 0
+push this 4
+return

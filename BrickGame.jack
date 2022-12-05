@@ -14,6 +14,7 @@ class BrickGame {
     field Array bricks;
     field int numBricks;
     field boolean win;
+    field Random random;
 
     // The current width of the Paddle
     field int PaddleWidth;
@@ -24,12 +25,11 @@ class BrickGame {
         var int j;
 
 	    do Screen.clearScreen();
-
         let PaddleWidth = 50;  // initial Paddle size
         let paddle = Paddle.new(230, 229, PaddleWidth, 7);
         let ball = Ball.new(253, 222, 0, 511, 0, 229);
-        let bonus = Bonus.new(250, 125, true);
-
+        let random = Random.new(8);
+        let bonus = Bonus.new(250, 125, random.randRange(2));
         let numBricks = 48;
         let bricks = Array.new(48);
 
@@ -180,12 +180,18 @@ class BrickGame {
                 let brick = bricks[i];
                 let hasCollision =  brick.hasCollision(ball.getLeft(), ball.getY(), ball.getSize());
                 if (hasCollision){
+                    if(random.randRange(4)){
+                        if(~(bonus=0)){
+                        do bonus.dispose();}
+                        let bonus = Bonus.new(ball.getLeft(), ball.getY(), random.randRange(2));}
+
                     do brick.dispose();
                     let bricks[i] = 0;
                     let numBricks = numBricks - 1;
 
                     // update score
                     let score = score + 1;
+                    
                     if(score = 48){
                     let win = true;
                     let exit = true;
