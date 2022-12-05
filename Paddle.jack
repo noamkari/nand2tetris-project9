@@ -16,15 +16,20 @@
 class Paddle {
 
     field int x, y;           // the bat's screen location
-    field int width, height;  // the bat's width and height
+    field int width, height, leftWall, rightWall, rightWallLesPaddle;  // the bat's width and height
     field int direction;      // direction of the bat's movement (1 = left, 2 = right)
 
     /** Constructs a new bat with the given location and width. */
-    constructor Paddle new(int Ax, int Ay, int Awidth, int Aheight) {
+    constructor Paddle new(int Ax, int Ay, int Awidth, int Aheight, int AleftWall, int ArightWall) {
         let x = Ax;
         let y = Ay;
         let width = Awidth;
         let height = Aheight;
+
+        let leftWall = AleftWall;
+	    let rightWall = ArightWall;
+        let rightWallLesPaddle = rightWall - width;
+
         let direction = 2;
         do show();
         return this;
@@ -50,9 +55,15 @@ class Paddle {
         return;
     }
 
+    method int drawHelpr(){
+        if ((x + width) > rightWallLesPaddle){
+            return rightWallLesPaddle;
+        }
+        return x + width;
+    }
     /** Draws the bat. */
     method void draw() {
-        do Screen.drawRectangle(x, y, x + width, y + height);
+        do Screen.drawRectangle(x, y, drawHelpr(), y + height);
         return;
     }
 
@@ -110,6 +121,8 @@ class Paddle {
         else{
             do setWidth(width - 30);
         }
+        let rightWallLesPaddle = rightWall - width;
+
         return;
     }
 }

@@ -26,13 +26,15 @@ class BrickGame {
 
 	    do Screen.clearScreen();
         let PaddleWidth = 50;  // initial Paddle size
-        let paddle = Paddle.new(230, 229, PaddleWidth, 7);
+
+        let paddle = Paddle.new(230, 229, PaddleWidth, 7, 0, 511);
         let ball = Ball.new(253, 222, 0, 511, 0, 229);
+
         let random = Random.new(8);
         let bonus = Bonus.new(250, 125, random.randRange(2));
         let numBricks = 48;
         let bricks = Array.new(48);
-
+        
         let j = 0;
         while (j < 3){
             let i = 0;
