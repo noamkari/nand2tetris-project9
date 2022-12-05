@@ -78,18 +78,28 @@ push this 0
 push this 2
 add
 return
+function Bonus.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
 function Bonus.move 0
 push argument 0
 pop pointer 0
 push pointer 0
 call Bonus.hide 1
 pop temp 0
-push this 0
+push this 1
 push constant 2
 add
-pop this 0
+pop this 1
 push pointer 0
 call Bonus.show 1
 pop temp 0
 push constant 0
+return
+function Bonus.isGrow 0
+push argument 0
+pop pointer 0
+push this 4
 return

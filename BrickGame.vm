@@ -21,10 +21,10 @@ push constant 229
 call Ball.new 6
 pop this 1
 push constant 250
-push constant 220
+push constant 125
 push constant 0
 not
-call Bouns.new 3
+call Bonus.new 3
 pop this 2
 push constant 48
 pop this 8
@@ -167,11 +167,14 @@ not
 if-goto WHILE_END1
 call Keyboard.keyPressed 0
 pop local 0
-push this 0
-call Paddle.move 1
-pop temp 0
 push pointer 0
 call BrickGame.moveBall 1
+pop temp 0
+push pointer 0
+call BrickGame.moveBonus 1
+pop temp 0
+push this 0
+call Paddle.move 1
 pop temp 0
 push constant 50
 call Sys.wait 1
@@ -226,11 +229,14 @@ not
 if-goto WHILE_END2
 call Keyboard.keyPressed 0
 pop local 0
-push this 0
-call Paddle.move 1
-pop temp 0
 push pointer 0
 call BrickGame.moveBall 1
+pop temp 0
+push pointer 0
+call BrickGame.moveBonus 1
+pop temp 0
+push this 0
+call Paddle.move 1
 pop temp 0
 push constant 50
 call Sys.wait 1
@@ -298,6 +304,79 @@ call Output.printString 1
 pop temp 0
 label IF_END4
 label IF_FALSE3
+push constant 0
+return
+function BrickGame.moveBonus 6
+push argument 0
+pop pointer 0
+push this 2
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push this 2
+call Bonus.getRight 1
+pop local 0
+push this 2
+call Bonus.getLeft 1
+pop local 1
+push this 2
+call Bonus.getY 1
+pop local 4
+push this 0
+call Paddle.getLeft 1
+pop local 2
+push this 0
+call Paddle.getRight 1
+pop local 3
+push this 2
+call Bonus.move 1
+pop temp 0
+push local 4
+push constant 218
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 2
+push constant 1
+add
+push local 1
+lt
+push local 3
+push constant 1
+sub
+push local 0
+gt
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 10
+push constant 27
+call Output.moveCursor 2
+pop temp 0
+push constant 100
+call Output.printInt 1
+pop temp 0
+push this 2
+call Bonus.isGrow 1
+pop local 5
+push this 0
+push local 5
+call Paddle.activateBonus 2
+pop temp 0
+label IF_FALSE2
+push this 2
+call Bonus.dispose 1
+pop temp 0
+push constant 0
+pop this 2
+label IF_FALSE1
 push constant 0
 return
 function BrickGame.moveBall 13
@@ -537,14 +616,6 @@ push constant 1
 pop local 0
 label IF_FALSE10
 label IF_END9
-push this 10
-push constant 2
-sub
-pop this 10
-push this 0
-push this 10
-call Paddle.setWidth 2
-pop temp 0
 label IF_FALSE8
 label IF_FALSE7
 push this 1
