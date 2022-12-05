@@ -76,6 +76,11 @@ push this 0
 push this 2
 add
 return
+function Brick.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
 function Brick.hasCollision 0
 push argument 0
 pop pointer 0

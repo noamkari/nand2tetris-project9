@@ -54,16 +54,241 @@ return
 function Bonus.draw 0
 push argument 0
 pop pointer 0
+push this 4
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push this 0
 push this 1
 push this 0
 push this 2
 add
 push this 1
-push this 3
-add
-call Screen.drawRectangle 4
+call Screen.drawLine 4
 pop temp 0
+push this 0
+push constant 1
+add
+push this 1
+push constant 1
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 2
+add
+push this 1
+push constant 2
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 3
+add
+push this 1
+push constant 3
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 1
+add
+push this 1
+push constant 1
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 2
+add
+push this 1
+push constant 2
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 3
+add
+push this 1
+push constant 3
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 1
+sub
+push this 1
+push constant 1
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 2
+sub
+push this 1
+push constant 2
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 3
+sub
+push this 1
+push constant 3
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 1
+sub
+push this 1
+push constant 1
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 2
+sub
+push this 1
+push constant 2
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 3
+sub
+push this 1
+push constant 3
+sub
+call Screen.drawPixel 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+push constant 3
+add
+push this 1
+push this 0
+push this 2
+add
+push constant 3
+sub
+push this 1
+call Screen.drawLine 4
+pop temp 0
+push this 0
+push this 1
+push constant 3
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 1
+add
+push this 1
+push constant 2
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 2
+add
+push this 1
+push constant 1
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 1
+push constant 3
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 1
+add
+push this 1
+push constant 2
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push constant 2
+add
+push this 1
+push constant 1
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push this 1
+push constant 3
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 1
+sub
+push this 1
+push constant 2
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 2
+sub
+push this 1
+push constant 1
+add
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push this 1
+push constant 3
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 1
+sub
+push this 1
+push constant 2
+sub
+call Screen.drawPixel 2
+pop temp 0
+push this 0
+push this 2
+add
+push constant 2
+sub
+push this 1
+push constant 1
+sub
+call Screen.drawPixel 2
+pop temp 0
+label IF_END0
 push constant 0
 return
 function Bonus.getLeft 0

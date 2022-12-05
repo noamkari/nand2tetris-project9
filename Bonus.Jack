@@ -40,7 +40,42 @@ class Bonus{
 
       /** Draws the ball. */
     method void draw() {
-	    do Screen.drawRectangle(x, y, x + wide, y + height);
+        if(grow){
+        do Screen.drawLine(x ,y , (x + wide), y);
+        do Screen.drawPixel(x+1,y+1);
+        do Screen.drawPixel(x+2,y+2);
+        do Screen.drawPixel(x+3,y+3);
+
+        do Screen.drawPixel(x+1,y-1);
+        do Screen.drawPixel(x+2,y-2);
+        do Screen.drawPixel(x+3,y-3);
+
+        do Screen.drawPixel(x+wide-1,y+1);
+        do Screen.drawPixel(x+wide-2,y+2);
+        do Screen.drawPixel(x+wide-3,y+3);
+
+        do Screen.drawPixel(x+wide-1,y-1);
+        do Screen.drawPixel(x+wide-2,y-2);
+        do Screen.drawPixel(x+wide-3,y-3);}
+        else{
+                do Screen.drawLine(x+3 ,y , (x+wide-3), y);
+        do Screen.drawPixel(x,y+3);
+        do Screen.drawPixel(x+1,y+2);
+        do Screen.drawPixel(x+2,y+1);
+        
+        do Screen.drawPixel(x,y-3);
+        do Screen.drawPixel(x+1,y-2);
+        do Screen.drawPixel(x+2,y-1);
+
+        do Screen.drawPixel(x+wide,y+3);
+        do Screen.drawPixel(x+wide-1,y+2);
+        do Screen.drawPixel(x+wide-2,y+1);
+        
+        do Screen.drawPixel(x+wide,y-3);
+        do Screen.drawPixel(x+wide-1,y-2);
+        do Screen.drawPixel(x+wide-2,y-1);
+        
+        }
 	    return;
     }
 
@@ -70,4 +105,6 @@ class Bonus{
         return grow;
     }
 
+
+    
 }
