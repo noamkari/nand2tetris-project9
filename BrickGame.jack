@@ -190,9 +190,7 @@ class BrickGame {
                 let brick = bricks[i];
                 let hasCollision =  brick.hasCollision(ball.getLeft(), ball.getY(), ball.getSize());
                 if (hasCollision){
-                    if(random.randRange(4)){
-                        if(~(bonus=0)){
-                        do bonus.dispose();}
+                    if(random.randRange(4) & (bonus=0)){
                         let bonus = Bonus.new(ball.getLeft(), ball.getY(), random.randRange(2));}
 
                     do brick.dispose();
