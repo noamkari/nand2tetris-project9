@@ -1,25 +1,11 @@
-// This file is part of www.nand2tetris.org
-// and the book "The Elements of Computing Systems"
-// by Nisan and Schocken, MIT Press.
-// File name: projects/11/Pong/Bat.jack
 
-/**
- * A graphical Pong bat. 
- * Displayed as a filled horizontal rectangle that has 
- * a screen location, a width and a height.
- * Has methods for drawing, erasing, moving left and right, 
- * and changing its width (to make the hitting action more challenging).
- * This class should have been called "paddle", following the 
- * standard Pong terminology. But, unaware of this terminology,
- * we called it "bat", and then decided to stick to it. 
- */
 class Paddle {
 
-    field int x, y;           // the bat's screen location
-    field int width, height, leftWall, rightWall, rightWallLesPaddle;  // the bat's width and height
-    field int direction;      // direction of the bat's movement (1 = left, 2 = right)
+    field int x, y;          
+    field int width, height, leftWall, rightWall, rightWallLesPaddle;
+    field int direction;      // direction of the paddle's movement (1 = left, 2 = right)
 
-    /** Constructs a new bat with the given location and width. */
+    /** Constructs a new paddle with the given location and width. */
     constructor Paddle new(int Ax, int Ay, int Awidth, int Aheight, int AleftWall, int ArightWall) {
         let x = Ax;
         let y = Ay;
@@ -41,14 +27,14 @@ class Paddle {
         return;
     }
 
-    /** Shows the bat. */
+    /** Shows the paddle. */
     method void show() {
         do Screen.setColor(true);
         do draw();
         return;
     }
 
-    /** Hides the bat. */
+    /** Hides the paddle. */
     method void hide() {
         do Screen.setColor(false);
         do draw();
@@ -61,29 +47,29 @@ class Paddle {
         }
         return x + width;
     }
-    /** Draws the bat. */
+    /** Draws the paddle. */
     method void draw() {
         do Screen.drawRectangle(x, y, drawHelpr(), y + height);
         return;
     }
 
-    /** Sets the bat's direction (0=stop, 1=left, 2=right). */
+    /** Sets the paddle's direction (0=stop, 1=left, 2=right). */
     method void setDirection(int Adirection) {
         let direction = Adirection;
         return;
     }
 
-    /** Returns the bat's left edge. */
+    /** Returns the paddle's left edge. */
     method int getLeft() {
         return x;
     }
 
-    /** Returns the bat's right edge. */
+    /** Returns the paddle's right edge. */
     method int getRight() {
         return x + width;
     }
 
-    /** Sets the bat's width. */
+    /** Sets the paddle's width. */
     method void setWidth(int Awidth) {
         do hide();
         let width = Awidth;
@@ -91,7 +77,7 @@ class Paddle {
         return;
     }
 
-    /** Moves the bat one step in the bat's direction. */
+    /** Moves the paddle one step in the paddle's direction. */
     method void move() {
 	    if (direction = 1) {
             let x = x - 4;

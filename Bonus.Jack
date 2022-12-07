@@ -1,10 +1,10 @@
 class Bonus{
 
-    field int x, y;  // brick loaction top left corner
+    field int x, y;  // bonus loaction top left corner
     field int wide, height;
     field boolean grow;
 
-       /** Constructs a new Brick with the given initial location and wall locations. */
+       /** Constructs a new bonus with the given initial location and wall locations. */
     constructor Bonus new(int Ax, int Ay, boolean Agrow) {    	
 	    let x = Ax;		
 	    let y = Ay;
@@ -17,28 +17,28 @@ class Bonus{
         return this;
     }
 
-        /** Hides the brick. */
+        /** Hides the bonus. */
     method void hide() {
         do Screen.setColor(false);
 	    do draw();
         return;
     }
 
-      /** Deallocates the Brick's memory. */
+      /** Deallocates the bonus's memory. */
     method void dispose() {
         do hide();
         do Memory.deAlloc(this);
         return;
     }
 
-      /** Shows the brick. */
+      /** Shows the bonus. */
     method void show() {
         do Screen.setColor(true);
         do draw();
         return;
     }
 
-      /** Draws the ball. */
+      /** Draws the bonus. */
     method void draw() {
         if(grow){
         do Screen.drawLine(x ,y , (x + wide), y);
@@ -79,12 +79,10 @@ class Bonus{
 	    return;
     }
 
-        /** Returns the ball's left edge. */
     method int getLeft() {
         return x;
     }
 
-       /** Returns the ball's right edge. */
     method int getRight() {
         return x + wide;
     }

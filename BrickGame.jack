@@ -3,9 +3,9 @@
  */
 class BrickGame {
 
-    static BrickGame instance; // the singelton, a Pong game instance     
-    field Paddle paddle;            // the Paddle
-    field Ball ball;          // the ball
+    static BrickGame instance;     
+    field Paddle paddle;           
+    field Ball ball;        
     field Bonus bonus;
     field int wall;           // the current wall that the ball is bouncing off of.
     field boolean exit;       // true when the game is over
@@ -16,10 +16,9 @@ class BrickGame {
     field boolean win;
     field Random random;
 
-    // The current width of the Paddle
+
     field int PaddleWidth;
 
-    /** Constructs a new Pong game. */
     constructor BrickGame new() {
         var int i;
         var int j;
@@ -59,7 +58,6 @@ class BrickGame {
         return this;
     }
 
-    /** Deallocates the object's memory. */
     method void dispose() {
         do paddle.dispose();
 	    do ball.dispose();
@@ -67,19 +65,15 @@ class BrickGame {
         return;
     }
 
-    /** Creates an instance of Pong game, and stores it. */
     function void newInstance() {
         let instance = BrickGame.new();
         return;
     }
-    
-    /** Returns the single instance of this Pong game. */
+     
     function BrickGame getInstance() {
         return instance;
     }
 
-    /** Starts the game, and andles inputs from the user that control
-     *  the Paddle's movement direction. */
     method void run() {
         var char key;
 
@@ -142,12 +136,8 @@ class BrickGame {
 
         do bonus.move();
 
-
-        if (yBonus > 218){ // 
-            if (((PaddleLeft + 1) < bonusL) & ((PaddleRight - 1) > bonusR)){
-                do Output.moveCursor(10,27);
-                do Output.printInt(100);
-
+        if (yBonus > 225){
+            if (((PaddleLeft - 1) < bonusL) & ((PaddleRight + 1) > bonusR)){
                 let grow = bonus.isGrow();
                 do paddle.activateBonus(grow);
             }
@@ -166,80 +156,88 @@ class BrickGame {
         return num;
     }
 
-    /**
-     * Handles ball movement, including bouncing.
-     * If the ball bounces off a wall, finds its new direction.
-     * If the ball bounces off the Paddle, increases the score by one
-     * and shrinks the Paddle's size, to make the game more challenging. 
-     */
+    method brick calculateColision(){
+
+        var boolean hasCollision;
+        var Brick brick;
+        var int i;
+        
+        let brick = 0;
+        let i = 0;
+
+        while (i < 48){
+            if (~(bricks[i] = 0)){
+                let brick = bricks[i];
+                let hasCollision =  brick.hasCollision(ball.getLeft(), ball.getY(), ball.getSize());
+                }
+            if (hasCollision){
+
+                if(bonus=0){
+                    let bonus = Bonus.new(ball.getLeft(), ball.getY(), random.randRange(2));
+                    }
+
+                do brick.dispose();
+                let bricks[i] = 0;
+                let numBricks = numBricks - 1;
+
+                // update score
+                let score = score + 1;
+                
+                if(score = 48){
+                    let win = true;
+                    let exit = true;
+                }
+                do Output.moveCursor(22,7);
+                do Output.printInt(score);
+
+                return brick;
+            }
+            let i = i + 1;
+        }
+        
+        return 0;
+    }
+
     method void moveBall() {
         var int bouncingDirection, PaddleLeft, PaddleRight, ballLeft, ballRight;
-        var int i, newx, newy, factor;
-        var int divLengthx, divLengthy;
+        var int divLengthx, divLengthy, newx, newy, factor;
         var Brick brick;
-        var boolean hasCollision;
+
 
         if (numBricks < 1){
             let exit = true;
         }
         let wall = ball.move();
+        let brick = calculateColision();
+        if (~(brick=0)){
 
-        let i = 0;
-            while (i < 48){
-                if (~(bricks[i] = 0)){
-                let brick = bricks[i];
-                let hasCollision =  brick.hasCollision(ball.getLeft(), ball.getY(), ball.getSize());
-                if (hasCollision){
-                    if(random.randRange(4)){
-                        if(~(bonus=0)){
-                        do bonus.dispose();}
-                        let bonus = Bonus.new(ball.getLeft(), ball.getY(), random.randRange(2));}
+            let divLengthx = floor(ball.getLengthx() / 10);
+            let divLengthy = floor(ball.getLengthy()  / 10);
 
-                    do brick.dispose();
-                    let bricks[i] = 0;
-                    let numBricks = numBricks - 1;
-
-                    // update score
-                    let score = score + 1;
-                    
-                    if(score = 48){
-                    let win = true;
-                    let exit = true;
-                    }
-                    do Output.moveCursor(22,7);
-                    do Output.printInt(score);
-
-                    // dividing by 10 first since results are too big
-                    let divLengthx = floor(ball.getLengthx() / 10);
-                    let divLengthy = floor(ball.getLengthy()  / 10);
-
-                    if (ball.getInvert()){
-                        let bouncingDirection = -1;
-                    }
-                    else{
-                        let bouncingDirection = 1;
-                    }
-
-                    let newy = brick.getLeft();
-		            let newx = (divLengthy * (20)) / divLengthx;
-
-                    if (ball.getInvert()){
-                        let factor = -3;
-                    }
-                    else{
-                        let factor = 3;
-                    }
-                    let lastWall = 0;                    
-                    let wall = 0;
-                    do ball.setWall(0);
-
-                    let newx = ball.getLeft() + (newx * factor);
-                    do ball.setDestination(newx, newy);
-                }
+            if (ball.getInvert()){
+                let bouncingDirection = -1;
             }
-            let i = i + 1;
-        }
+            else{
+                let bouncingDirection = 1;
+            }
 
+            let newy = brick.getLeft();
+            let newx = (divLengthy * (20)) / divLengthx;
+
+            if (ball.getInvert()){
+                let factor = -3;
+            }
+            else{
+                let factor = 3;
+            }
+            let lastWall = 0;                    
+            let wall = 0;
+            do ball.setWall(0);
+
+            let newx = ball.getLeft() + (newx * factor);
+            do ball.setDestination(newx, newy);
+        }
+        
         if ((wall > 0) & (~(wall = lastWall))) {
             let lastWall = wall;
             let bouncingDirection = 0;
