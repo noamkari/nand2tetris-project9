@@ -1,23 +1,24 @@
 /**
- * Represents a Pong game.
+ * Represents a Brick game,  base on pong game from the expamles
  */
 class BrickGame {
 
     static BrickGame instance;     
-    field Paddle paddle;           
-    field Ball ball;        
+    field Paddle paddle;  
+    field Array bricks; 
+    field Ball ball;    
     field Bonus bonus;
-    field int wall;           // the current wall that the ball is bouncing off of.
-    field boolean exit;       // true when the game is over
-    field int score;          // the current score.
-    field int lastWall;       // the last wall that the ball bounced off of.
-    field Array bricks;
-    field int numBricks;
+
+    field int wall; 
+    field int lastWall; 
+    field int PaddleWidth;        
+
+    field int numBricks;      
+    field int score;         
+    field boolean exit; 
     field boolean win;
+
     field Random random;
-
-
-    field int PaddleWidth;
 
     constructor BrickGame new() {
         var int i;

@@ -1,4 +1,4 @@
-
+// base on pong game from the expamles
 class Paddle {
 
     field int x, y;          
